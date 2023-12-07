@@ -2,10 +2,10 @@ import os
 import sys
 from src.exception import CustomException
 from src.logger import logging
-import pandas as pandas
+import pandas as pd
 
 from sklearn.model_selection import train_test_split
-from dataclass import dataclass
+from dataclasses import dataclass
 
 @dataclass
 class DataIngestionConfig:
@@ -20,7 +20,7 @@ class DataIngestion:
     def initiate_data_ingestion(self):
         logging.info("Entered the data ingestion method")
         try:
-            df = pd.read_csv('E:\mlproject\notebook\data\stud.csv')
+            df = pd.read_csv('notebook\data\stud.csv')
             logging.info('Read the dataset as a dataframe')
 
             os.makedirs(os.path.dirname(self.ingestion_config.train_data_path), exist_ok = True)
@@ -43,6 +43,6 @@ class DataIngestion:
         except Exception as e:
             raise CustomException(e, sys)
 
-    if __name__ == "__main__":
-        obj = DataIngestion()
-        train_data, test_data = obj.initiate_data_ingestion()
+if __name__ == "__main__":
+    obj = DataIngestion()
+    train_data, test_data = obj.initiate_data_ingestion()
